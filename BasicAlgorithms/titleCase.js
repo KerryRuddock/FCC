@@ -1,9 +1,9 @@
 /*
 ** Function: Takes a String, capitalizes First Letter in each Word, lowercase for remaining word letters.
 ** @function titleCase
-** @summary  Capitilize each word in a string.
+** @summary  Capitalize each word in a string.
 ** @param 	{string} str
-** @returns {string} a capitilized worded sentence. 
+** @returns {string} Capitalizes each first letter of each word in sentence. 
 */
 function titleCase(str) {
 	'use strict';
@@ -16,7 +16,7 @@ function titleCase(str) {
 			s1[index] = word.toUpperCase();
 			result.push(s1[index]);
 		} else {
-		    s1[index] = word.slice(0,1).toUpperCase();	
+		  s1[index] = word.slice(0,1).toUpperCase();	
 			s2[index] = word.slice(1,word.length).toLowerCase();
 			result.push( s1[index] + s2[index] );
 		}
