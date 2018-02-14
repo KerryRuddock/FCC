@@ -23,6 +23,3 @@ function titleCase(str) {
 	});
 	return result.join(' ');
 }
-
- 
-
