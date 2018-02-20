@@ -1,21 +1,23 @@
 /*
-** Function: Take an array of 2 numbers and sums all numbers in the range.
-** @function sumAll
-** @summary  Sums all numbers in a range using array of 2 numbers.
+** Function: Compare two arrays and return a new array with items that are unique between both arrays.
+** @function diffArray
+** @summary  Find the unique items in a set of 2 arrays.
 ** @param 	 {array} 
-** @returns  {number} the result of the sum
-** @see {@link https://jsperf.com/sumallinrange-eggs} for an intermediate algorithm that is much faster.
+** @param 	 {array} 
+** @see {@link https://jsperf.com/diffarray-eggs} Basic Code Solution is faster.
+** @returns  {array} contains unique items
 */
-function sumAll(numArray) {
+function diffArray(arr1, arr2) {
 	'use strict';
-    
-  var start = Math.min(numArray[0], numArray[1]);
-  var end = Math.max(numArray[0], numArray[1]);
-
-  for (var i=start, start=0; i <= end; i++){
-      start += i;
+  var catArr = arr1.concat(arr2);
+  var len = catArr.length;
+  var result = [];
+  
+  for (var i=0; i<len; i++) {
+    if ( arr1.indexOf( catArr[i] ) === -1 || arr2.indexOf( catArr[i] ) === -1 ){
+      result.push(catArr[i]);
+    }
   }
-  return start;
+  return result;
 }
  
-
