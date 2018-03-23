@@ -6,8 +6,7 @@
 ** @param 	 {number} cash to 2 decimal places.
 ** @param 	 {array}  CID 2d Array- denominationType, denominationAmount
 ** @returns  {array}  Change 2d Array
-** @see {@link https://jsperf.com/ (not required - same solution)
-*/
+** @see {@link https://jsperf.com/exactchange-eggscheck
 
 function checkCashRegister(price, cash, cid) {
   
