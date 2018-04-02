@@ -12,6 +12,8 @@ function permAlone(string) {
   var arr = string.split('');
   var letters = arr.length;
   var repeats = [], uniq = 1, permutations;
+  var factorial = [1,1,2,6,24,120,720,5040,40320,362880]; // table max !9 factorial
+  var fMax = factorial.length;
   
   arr.sort();
   
@@ -63,7 +65,11 @@ function permAlone(string) {
     permutations = 1;
   }
   else {
-    permutations = getFactorial(letters);
+    if ( letters <= fMax ) {
+      permutations = factorial[letters];
+    } else {
+      permutations = getFactorial(letters);
+    }
 
     // Reduce Permutations by subtracting out invalid permutations that contain repeated letters.
     // Add to Permutations any overlap of invalid permutations that were counted during another repeatedLetterSet
@@ -74,16 +80,26 @@ function permAlone(string) {
       // 1st getFactorial() gets #ofBoxes where repeated letters may appear
       // 2nd getFactorial() gets repeated letters Factorial. ie. 'aa' = !2, 'aaa' = !3.
  
-      var repeatCount = repeats[k];
+      var repeatCount = repeats[k]; 
       while ( repeatCount >= 2 ) {
-        invalids = getFactorial( letters - repeatCount +1 ) * getFactorial( repeatCount );
+        if ( letters - repeatCount <= fMax ) {
+          invalids = factorial[letters - repeatCount +1] * factorial[repeatCount];
+        } else {
+          invalids = getFactorial( letters - repeatCount +1 ) * getFactorial( repeatCount );
+        }
         permutations -= invalids;
         repeatCount-- ;
-      }  
+      } 
+      
       // add back in overlap of where repeated characters were counted over again with multiple
       // repeated characters sets. ie [aabb]
       if ( repeats.length > 1 ) {
-        overlaps = getFactorial ( letters - repeats[k] ) * getFactorial( repeats[k] );
+        var rNum = repeats[k];
+        if ( letters - rNum <= fMax ) {
+          overlaps = factorial[letters - rNum] * factorial[rNum];
+        } else {
+          overlaps = getFactorial ( letters - rNum ) * getFactorial( rNum );
+        }
         permutations += overlaps;
       }      
       k++;
