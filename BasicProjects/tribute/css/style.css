@@ -1,0 +1,78 @@
+* { 
+  box-sizing: border-box;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+ 	color:#666666;
+  background-color: #fff;
+  width: 100%;
+  min-height:100%;
+  height: 100%;
+  overflow-x:hidden;
+  margin: 0;
+}
+
+.main-wrap {
+  margin: 1%;
+  background-color: #ffeeff;
+}
+
+.hero {
+  padding: 1%;
+}
+.hero picture {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height:73vh;
+  height: 73%;
+  background-image: url("../images/terrysface-zoomed.jpg");
+  background-size: 100% 100%;
+  background-position:center;
+  background-repeat: no-repeat;
+  box-shadow: 4px 4px 8px #000000;
+  transition: 1s;
+}
+
+.hero .hero--end{ display:none; }
+.hero .hero--paused { display:none; }
+
+.hero .hero--end,
+.hero .hero--paused {
+  position: absolute;
+  bottom:0;
+  right:10px;
+  font-size: 24px;
+  color: #fff;
+}
+
+.tribute {
+  position: relative;
+  margin-top: 2%;  
+}
+
+.tribute-line1,
+.tribute-line2,
+.tribute-line3{
+  width: 90%;
+  min-height:1.5em;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.5em;
+  line-height:1.5em; 
+  opacity:0;
+}
+.tribute-button-wrap {
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+.tribute-button--fbwd,
+.tribute-button--play,
+.tribute-button--ffwd {
+  position:relative;
+  display:block;
+  height: 30px;
+  float: right;
+}
