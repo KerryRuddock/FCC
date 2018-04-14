@@ -69,8 +69,8 @@ body {
   right: 10px;
 }
 .tribute-button--fbwd,
-.tribute-button--play,
-.tribute-button--ffwd {
+.tribute-button--toggle-play,
+.tribute-button--fwd {
   position:relative;
   display:block;
   height: 30px;

@@ -95,10 +95,10 @@ $(function() {
   var tl = new TimelineMax({ onComplete: animateStory });
   
   // pause/play toggle button
-  $('.tribute-button--play').on( "click", function() {
-    controls.play();
+  $('.tribute-button--toggle-play').on( "click", function() {
+    controls.togglePlay();
   });
-  
+ 
   // fast backward button
   $('.tribute-button--fbwd').on( "click", function() {
     storySegment = 0;
@@ -112,16 +112,17 @@ $(function() {
   });  
   
     // fast forward button
-  $('.tribute-button--ffwd').on( "click", function() {
+  $('.tribute-button--fwd').on( "click", function() {
     line = 0;
-    if ( storySegment < maxStorySegments ) {
-      storySegment++;
-      bgImg.ffwd();
-      controls.ffwd();
-    }
-
     clearTimeLine();
     tl = new TimelineMax({ onComplete: animateStory });
+    if ( storySegment < maxStorySegments ) {
+      storySegment++;
+      bgImg.fwd();
+      controls.fwd();
+    }
+
+
     animateStory();
   });  
   
@@ -186,7 +187,7 @@ $(function() {
       this.setBGImage();
     },
     
-    ffwd: function () {
+    fwd: function () {
       this.next();
     },
     
@@ -206,51 +207,52 @@ $(function() {
   var controls = {
  
     end: function () {
-      
-        if ( $('.tribute-button--play').find('.fa-pause').length !== 0 ) {
+        if ( $('.tribute-button--toggle-play').find('.fa-pause').length !== 0 ) {
           $('.fa-pause').removeClass("fa-pause").addClass("fa-play");
           $('.hero--end').css('display', "block");
           tl.pause();
           paused = true;
         }     
-
     },   
     
     fbwd: function () {
-      
-        if ( $('.tribute-button--play').find('.fa-play').length !== 0 ) {
-          $('.fa-play').removeClass("fa-play").addClass("fa-pause");
-          $('.hero--end').css('display', "none");
-          tl.play();
-          paused = false;
-        }
-
+        this.play();
     },
     
-    ffwd: function () {
-      
-        this.fbwd();
+    fwd: function () {
+        this.play();
+    },
+    
+    pause: function() {    
+        $('.fa-pause').removeClass("fa-pause").addClass("fa-play");
+        $('.hero--paused').css('display', "block");
+        tl.pause();
+        paused = true;
     },
     
     play: function() {
-      
-        if ( $('.tribute-button--play').find('.fa-pause').length !== 0 ) {
-          $('.fa-pause').removeClass("fa-pause").addClass("fa-play");
-          $('.hero--paused').css('display', "block");
-          tl.pause();
-          paused = true;
+        $('.fa-play').removeClass("fa-play").addClass("fa-pause");
+        $('.hero--paused').css('display', "none");
+        
+        if ( $('.hero--end').css('display') === 'block' ) {
+          $('.hero--end').css('display', "none");
+            storySegment = 0;
+            line = 0; 
+            bgImg.fbwd();
         }
-        else if ( $('.tribute-button--play').find('.fa-play').length !== 0 ) {
-          $('.fa-play').removeClass("fa-play").addClass("fa-pause");
-          $('.hero--paused').css('display', "none");
-          if ( $('.hero--end').css('display') === 'block' ) {
-            $('.hero--end').css('display', "none");
-              storySegment = 0;
-              line = 0; 
-              bgImg.fbwd();
-          }
-          tl.play();
-          paused = false;
+        tl.play();
+        paused = false;
+    },
+    
+    togglePlay: function() {
+      
+        // button showing PAUSE indicates tribute currently playing 
+        if ( $('.tribute-button--toggle-play').find('.fa-pause').length !== 0 ) {
+          this.pause();
+
+        } // button showing PLAY indicates tribute currently paused
+        else if ( $('.tribute-button--toggle-play').find('.fa-play').length !== 0 ) {
+          this.play();
         }
       
     }
