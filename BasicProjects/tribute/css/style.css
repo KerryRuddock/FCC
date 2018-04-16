@@ -3,8 +3,8 @@
 }
 
 body {
-	font-family: 'Open Sans', sans-serif;
- 	color:#666666;
+  font-family: 'Quattrocento', serif;
+ 	color:#333333;
   background-color: #fff;
   width: 100%;
   min-height:100%;
@@ -13,9 +13,39 @@ body {
   margin: 0;
 }
 
+.banner {
+  display: relative;
+
+}
+.banner h1 { 
+  display: inline-block;
+  width: 26%;
+  font-family: 'Pacifico', cursive;
+  letter-spacing: 2px;
+  color: #4a4a4b; 
+  margin-left: 1%;
+}
+
+.banner img {
+  position: relative;
+  top: 17px;
+  right:11px;
+  height: 56px;
+}
+.banner img:after {
+  width:100%;
+  clear: both;
+}
+
+.font-style-1 {
+  font-size: 24px;
+  line-height: 24px;  
+}
+
 .main-wrap {
   margin: 1%;
-  background-color: #ffeeff;
+  background-color: #CACADC;
+  box-shadow: 2px 2px 4px #000000;
 }
 
 .hero {
@@ -25,8 +55,8 @@ body {
   position: relative;
   display: block;
   width: 100%;
-  min-height:73vh;
-  height: 73%;
+  min-height:70vh;
+  height: 70%;
   background-image: url("../images/terrysface-zoomed.jpg");
   background-size: 100% 100%;
   background-position:center;
@@ -49,7 +79,8 @@ body {
 
 .tribute {
   position: relative;
-  margin-top: 2%;  
+  margin-top: 1%;  
+  padding-bottom: 1%;
 }
 
 .tribute-line1,
@@ -59,20 +90,63 @@ body {
   min-height:1.5em;
   margin: 0 auto;
   text-align: center;
-  font-size: 1.5em;
-  line-height:1.5em; 
   opacity:0;
 }
-.tribute-button-wrap {
+.tribute-control-btn-wrap {
   position: absolute;
   top: 0;
-  right: 10px;
+  right: 1.5%;
 }
-.tribute-button--fbwd,
-.tribute-button--toggle-play,
-.tribute-button--fwd {
+.tribute-control-btn--fbwd,
+.tribute-control-btn--toggle-play,
+.tribute-control-btn--fwd {
   position:relative;
   display:block;
   height: 30px;
   float: right;
+  box-shadow: 2px 2px 2px #000000;
 }
+
+.tribute-overlay {
+  position:absolute;
+  top: -9%;
+  left: 10px;
+  height: 100%;
+  width: 30%;
+  z-index: 2;
+}
+.tribute-overlay:hover {
+  position:absolute;
+  left:10px;
+  width: 98%;
+  height: 100%;
+  background-color: #b8b8c8;
+  transition: background-color .5s;
+  z-index: 2;
+}
+
+.tribute-overlay:hover button {
+ opacity:0.3;
+ z-index: 2;
+}
+
+.tribute-overlay:hover .tribute-info-wiki {
+  position: absolute;
+  bottom: 20%;
+  left: 20px;
+  text-decoration: none;
+  opacity: 1;
+} 
+
+.tribute-info-btn {
+  position: absolute;
+  top: 10%;
+  left:10px;
+  color:#2e2e32;
+}
+
+.tribute-info-wiki {
+  opacity:0;
+  margin: auto;
+}
+ 

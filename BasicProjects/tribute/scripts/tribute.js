@@ -1,5 +1,49 @@
-$(function() {
-  
+$(window).on( 'load', function() {
+    
+  /*
+  ** Image Rotator
+  */
+
+  var bgImageArray = [
+        "v1523659021/terrysface-zoomed.jpg",
+        "v1523658991/terry-early-years.jpg", 
+        "v1523659083/ny-marathon.jpg", 
+        "v1523659025/training.jpg", 
+        "v1523659005/terry-front-run.jpg", 
+        "v1523659015/terry-on-stretcher.jpg", 
+        "v1523658954/miles-to-go.jpg"
+      ];
+      
+  // caches images, avoiding white flash between background replacements     
+  var base ="https://res.cloudinary.com/djhkdplck/image/upload/";
+
+  bgImageArray.forEach( function(img){
+      new Image().src = base + img; 
+
+  });
+
+  var bgImg = {
+    index: 0,
+    
+    fbwd: function () {
+      this.index = 0;
+      this.setBGImage();
+    },
+    
+    fwd: function () {
+      this.next();
+    },
+    
+    next: function () {
+      this.index++;
+      this.setBGImage();
+    },
+    
+    setBGImage: function () {
+      $('.hero picture').css( 'background-image', "url(" + base + bgImageArray[this.index] + ")" );
+    }
+  };
+    
   var tribStory = [
     [
       "Terry Fox - an activist in cancer research, ",
@@ -94,13 +138,13 @@ $(function() {
   var paused = false;
   var tl = new TimelineMax({ onComplete: animateStory });
   
-  // pause/play toggle button
-  $('.tribute-button--toggle-play').on( "click", function() {
+  // pause/play toggle btn
+  $('.tribute-control-btn--toggle-play').on( "click", function() {
     controls.togglePlay();
   });
  
-  // fast backward button
-  $('.tribute-button--fbwd').on( "click", function() {
+  // fast backward btn
+  $('.tribute-control-btn--fbwd').on( "click", function() {
     storySegment = 0;
     line = 0; 
     bgImg.fbwd();
@@ -111,8 +155,8 @@ $(function() {
     animateStory();
   });  
   
-    // fast forward button
-  $('.tribute-button--fwd').on( "click", function() {
+    // fast forward btn
+  $('.tribute-control-btn--fwd').on( "click", function() {
     line = 0;
     clearTimeLine();
     tl = new TimelineMax({ onComplete: animateStory });
@@ -121,8 +165,6 @@ $(function() {
       bgImg.fwd();
       controls.fwd();
     }
-
-
     animateStory();
   });  
   
@@ -158,56 +200,12 @@ $(function() {
   animateStory();
 
 /*
-** Image Rotator
-*/
-
-  var bgImageArray = [
-        "v1523659021/terrysface-zoomed.jpg",
-        "v1523658991/terry-early-years.jpg", 
-        "v1523659083/ny-marathon.jpg", 
-        "v1523659025/training.jpg", 
-        "v1523659005/terry-front-run.jpg", 
-        "v1523659015/terry-on-stretcher.jpg", 
-        "v1523658954/miles-to-go.jpg"
-      ];
-      
- // removed local: var base = "images/";
- var base ="https://res.cloudinary.com/djhkdplck/image/upload/"
-
-  bgImageArray.forEach( function(img){
-      new Image().src = base + img; 
-      // caches images, avoiding white flash between background replacements
-  });
-
-  var bgImg = {
-    index: 0,
-    
-    fbwd: function () {
-      this.index = 0;
-      this.setBGImage();
-    },
-    
-    fwd: function () {
-      this.next();
-    },
-    
-    next: function () {
-      this.index++;
-      this.setBGImage();
-    },
-    
-    setBGImage: function () {
-      $('.hero picture').css( 'background-image', "url(" + base + bgImageArray[this.index] + ")" );
-    }
-  };
-  
-/*
 ** Playback controls
 */  
   var controls = {
  
     end: function () {
-        if ( $('.tribute-button--toggle-play').find('.fa-pause').length !== 0 ) {
+        if ( $('.tribute-control-btn--toggle-play').find('.fa-pause').length !== 0 ) {
           $('.fa-pause').removeClass("fa-pause").addClass("fa-play");
           $('.hero--end').css('display', "block");
           tl.pause();
@@ -246,12 +244,12 @@ $(function() {
     
     togglePlay: function() {
       
-        // button showing PAUSE indicates tribute currently playing 
-        if ( $('.tribute-button--toggle-play').find('.fa-pause').length !== 0 ) {
+        // btn showing PAUSE indicates tribute currently playing 
+        if ( $('.tribute-control-btn--toggle-play').find('.fa-pause').length !== 0 ) {
           this.pause();
 
-        } // button showing PLAY indicates tribute currently paused
-        else if ( $('.tribute-button--toggle-play').find('.fa-play').length !== 0 ) {
+        } // btn showing PLAY indicates tribute currently paused
+        else if ( $('.tribute-control-btn--toggle-play').find('.fa-play').length !== 0 ) {
           this.play();
         }
       
