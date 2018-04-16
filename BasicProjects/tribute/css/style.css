@@ -12,29 +12,22 @@ body {
   overflow-x:hidden;
   margin: 0;
 }
-
 .banner {
-  display: relative;
-
+  height: 8vh;
 }
-.banner h1 { 
-  display: inline-block;
-  width: 26%;
-  font-family: 'Pacifico', cursive;
-  letter-spacing: 2px;
-  color: #4a4a4b; 
-  margin-left: 1%;
-}
-
 .banner img {
   position: relative;
-  top: 17px;
-  right:11px;
+  display:inline-block;
+  top: 10px;
   height: 56px;
 }
-.banner img:after {
-  width:100%;
-  clear: both;
+
+.banner h1 { 
+  display: inline-block;
+  font-family: 'Pacifico', cursive;
+  letter-spacing: 2px;
+  color: #4a4a4b;
+  margin: 0 1% 0;  
 }
 
 .font-style-1 {
@@ -42,7 +35,12 @@ body {
   line-height: 24px;  
 }
 
+.fa {
+  font-size: 24px;
+}
+
 .main-wrap {
+  min-height:89vh;
   margin: 1%;
   background-color: #CACADC;
   box-shadow: 2px 2px 4px #000000;
@@ -56,8 +54,7 @@ body {
   display: block;
   width: 100%;
   min-height:70vh;
-  height: 70%;
-  background-image: url("../images/terrysface-zoomed.jpg");
+  background-image: url("https://res.cloudinary.com/djhkdplck/image/upload/v1523659021/terrysface-zoomed.jpg");
   background-size: 100% 100%;
   background-position:center;
   background-repeat: no-repeat;
@@ -112,7 +109,7 @@ body {
   top: -9%;
   left: 10px;
   height: 100%;
-  width: 30%;
+  width: 49%;
   z-index: 2;
 }
 .tribute-overlay:hover {
@@ -121,32 +118,119 @@ body {
   width: 98%;
   height: 100%;
   background-color: #b8b8c8;
-  transition: background-color .5s;
+  transition: background-color .3s;
   z-index: 2;
 }
 
-.tribute-overlay:hover button {
- opacity:0.3;
+.tribute-overlay:hover .tribute-info-icon {
+ opacity:0.5;
  z-index: 2;
 }
 
+.tribute-overlay:hover .tribute-info-wrap {
+  position: relative;
+  color: #000;
+  margin-top: 1%;
+  text-align: center;
+  opacity: 1;
+  z-index: 2;
+} 
+
 .tribute-overlay:hover .tribute-info-wiki {
   position: absolute;
-  bottom: 20%;
-  left: 20px;
-  text-decoration: none;
+  left: 50%;
+  top: 75%;
+  transform: translate(-50%, -50%);
   opacity: 1;
 } 
 
-.tribute-info-btn {
+.tribute-info-icon {
   position: absolute;
   top: 10%;
   left:10px;
   color:#2e2e32;
 }
 
+.tribute-info-wrap,
 .tribute-info-wiki {
   opacity:0;
   margin: auto;
 }
- 
+
+.tribute-info-wrap span {
+  color: #6e6599;
+}
+
+/* 
+** MEDIA QUERIES
+*/ 
+@media only screen and (max-width: 600px) {
+
+.banner {
+  height: 7vh;
+}
+
+.banner img {
+  top: 7px;
+  height: 30px;
+}  
+
+.banner h1 { 
+  font-size: 24px;
+}
+
+.main-wrap {
+  min-height:91vh;
+}
+
+.fa {
+  font-size: 20px;
+}
+.hero picture {
+  min-height:40vh;
+}
+.tribute {
+  position: relative;
+  margin-top: 14%;  
+  padding-bottom: 1%;
+}
+
+.tribute-line1,
+.tribute-line2,
+.tribute-line3{
+  width: 90%;
+  margin: 0 auto;
+  padding: .5em 0em;
+  text-align: center;
+  opacity:0;
+}
+
+.tribute-control-btn-wrap {
+  position: absolute;
+  top: -6vh;
+  right: 1.5%;
+}
+
+.tribute-overlay {
+  margin-top: 1vh;
+  top: -5%;
+  left: 4px;
+}
+
+.tribute-overlay:hover {
+  position:absolute;
+  height:35vh;
+  left:4px;
+}
+
+.tribute-info-icon {
+  position: absolute;
+  top: -4vh;
+  left:2px;
+}
+
+.tribute-info-wrap {
+  padding-top: 6vh;
+}
+
+}/* End media: max-width: 600px  

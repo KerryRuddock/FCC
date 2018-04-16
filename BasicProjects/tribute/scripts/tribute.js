@@ -114,7 +114,7 @@ $(window).on( 'load', function() {
     ],
     [
       "As a Canadian, living at that time, we were all deeply affected by his death.",
-      "However, Terry left more his country Terry than he could possibly realize.",
+      "However, Terry left more for his country than he could possibly realize.",
       "",
       "He left behind his spirit and determination,",
       "and a dream, which became his legacy.",
@@ -137,6 +137,16 @@ $(window).on( 'load', function() {
   
   var paused = false;
   var tl = new TimelineMax({ onComplete: animateStory });
+  
+  
+   // mouseenter/mouseleave
+  $('.tribute-overlay').on( "mouseenter", function() {
+    controls.togglePlay();
+  });
+  
+  $('.tribute-overlay').on( "mouseleave", function() {
+    controls.togglePlay();
+  });
   
   // pause/play toggle btn
   $('.tribute-control-btn--toggle-play').on( "click", function() {
@@ -180,7 +190,7 @@ $(window).on( 'load', function() {
         
         // Note: Timeline invokes animateStory() after completing call to tl.to()
         tl.staggerTo([$line1, $line2, $line3], 3, { opacity: 1 }, 0.5);
-        tl.to([$line1, $line2, $line3], 1, { opacity: 0 }, "+=0.5");
+        tl.to([$line1, $line2, $line3], 1, { opacity: 0 }, "+=3.0");
         line += 3;
       } else if ( storySegment < maxStorySegments ) {
         storySegment++;
