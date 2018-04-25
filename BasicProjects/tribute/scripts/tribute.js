@@ -184,13 +184,19 @@ $(window).on( 'load', function() {
     if ( ! paused ) {
       if ( line < maxLines ) {
 
+        var totalLetters = 0, mSecs=0.5;
+        totalLetters += tribStory[storySegment][line].length;
+        totalLetters += tribStory[storySegment][line +1].length;
+        totalLetters += tribStory[storySegment][line +2].length;
+        mSecs += ( totalLetters / 5 * 0.1 + 0.5 ); 
+        
         $line1.text( tribStory[storySegment][line] );
         $line2.text( tribStory[storySegment][line + 1] );
         $line3.text( tribStory[storySegment][line + 2] );
         
         // Note: Timeline invokes animateStory() after completing call to tl.to()
-        tl.staggerTo([$line1, $line2, $line3], 3, { opacity: 1 }, 0.5);
-        tl.to([$line1, $line2, $line3], 1, { opacity: 0 }, "+=3.0");
+        tl.staggerTo([$line1, $line2, $line3], mSecs, { opacity: 1 }, 0.5);
+        tl.to([$line1, $line2, $line3], mSecs, { opacity: 0 }, "+=1.5");
         line += 3;
       } else if ( storySegment < maxStorySegments ) {
         storySegment++;
